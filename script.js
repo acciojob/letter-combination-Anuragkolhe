@@ -1,25 +1,26 @@
-function letterCombinations(num) {
+function letterCombinations(input_digit) {
   //Complete the function
-	let a = [0,1,"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
-//function f(num){
-    let s=num.toString();
-    //console.log(s, typeof s )
-    let d1 = parseInt(s[1])
-    let d2 = parseInt(s[0])
-    //console.log(d1, typeof d1, d2, typeof d2)
-    let s1=a[d1]
-    let s2=a[d2]
-    console.log(s1, s2)
-    let ar = []
-    for(let i=0;i<s1.length;i++){
-       for(let j=0;j<s2.length;j++){
-           let newString="";
-           newString=newString+s1[i]
-           newString=newString+s2[j]
-           ar.push(newString)
-       }
-	}	
-	return ar;
+  if (!input_digit) return []; 
+  let map = {
+      '2': 'abc',
+      '3': 'def',
+      '4': 'ghi',
+      '5': 'jkl',
+      '6': 'mno',
+      '7': 'pqrs',
+      '8': 'tuv',
+      '9': 'wxyz'
+  };
+  let result = ['']; 
+  for (let i = 0; i < input_digit.length; i++) {
+      let temp = [];
+      for (let j = 0; j < result.length; j++) {
+          for (let k = 0; k < map[input_digit[i]].length; k++) {
+              temp.push(result[j] + map[input_digit[i]][k]);
+          }
+      }
+      result = temp;
+  }
+  return result;
 }
-
 module.exports = letterCombinations;
